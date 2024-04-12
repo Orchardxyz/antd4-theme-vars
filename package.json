@@ -1,0 +1,28 @@
+{
+  "name": "antd4-theme-vars",
+  "version": "0.0.1",
+  "description": "Generate different theme files for antd4(>=antd@4.17.0-alpha.0)",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "scripts": {
+    "dev": "father dev",
+    "build": "father build",
+    "build:deps": "father prebundle",
+    "prepublishOnly": "father doctor && npm run build"
+  },
+  "keywords": [],
+  "authors": [
+    "Orchard <orchardyz@outlook.com>"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist",
+    "compiled"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "father": "^4.4.0"
+  }
+}
