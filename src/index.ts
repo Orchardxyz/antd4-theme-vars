@@ -1,1 +1,5 @@
-export default 'Hello father 4!';
+import defineConfig from "./defineConfig";
+
+export { defineConfig };
+
+export * from "./types";

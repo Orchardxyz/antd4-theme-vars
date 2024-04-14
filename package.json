@@ -1,9 +1,12 @@
 {
   "name": "antd4-theme-vars",
   "version": "0.0.1",
-  "description": "Generate different theme files for antd4(>=antd@4.17.0-alpha.0)",
+  "description": "Generate different theme files for antd4",
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
+  "bin": {
+    "antd4tv": "./bin/antd4tv.js"
+  },
   "scripts": {
     "dev": "father dev",
     "build": "father build",
@@ -17,12 +20,27 @@
   "license": "MIT",
   "files": [
     "dist",
+    "bin",
     "compiled"
   ],
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.6",
+    "@types/fs-extra": "^11.0.4",
+    "@types/tinycolor2": "^1.4.6",
     "father": "^4.4.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^11.2.0",
+    "less": "^4.2.0",
+    "v8-compile-cache": "^2.4.0"
+  },
+  "peerDependencies": {
+    "antd": ">=4.0.0, <5.0.0"
   }
 }
