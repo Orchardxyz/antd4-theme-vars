@@ -3,6 +3,7 @@ import { readFileSync } from "fs-extra";
 import { join } from "path";
 import chalk from "chalk";
 import generate from "./generate";
+import logger from "./logger";
 
 const program = new Command();
 const version = JSON.parse(
@@ -11,13 +12,12 @@ const version = JSON.parse(
   }).toString()
 ).version;
 
+logger.info(["Using", chalk.blueBright(`antd4-theme-vars@${version}`)]);
+
 export async function run() {
-  program
-    // .version(chalk.greenBright(version))
-    .command("gen")
-    .action(function () {
-      generate();
-    });
+  program.command("gen").action(function () {
+    generate();
+  });
 
   program.parse();
 }
