@@ -16,6 +16,7 @@ logger.info(["Using", chalk.blueBright(`antd4-theme-vars@${version}`)]);
 
 export async function run() {
   program.command("gen").action(function () {
+    logger.info("Start generating theme files...");
     generate();
   });
 

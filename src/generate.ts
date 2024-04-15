@@ -6,16 +6,17 @@ import {
 } from "./constants";
 import { join } from "path";
 import { DefineConfigType, ThemeConfig } from "./types";
-import chalk from "chalk";
 import spawn from "cross-spawn";
+import logger from "./logger";
+import chalk from "chalk";
 
 /**
  * 获取配置文件的内容。
  * 该函数会遍历预定义的配置文件列表，查找当前工作目录下的第一个存在配置文件，并返回其内容。
- * 如果没有找到配置文件，则抛出错误。
+ * 如果没有找到配置文件，则结束进程。
  *
  * @returns {DefineConfigType} 返回配置文件的内容。
- * @throws {Error} 如果找不到配置文件，则抛出错误。
+ * @throws {Error} 如果找不到配置文件，则结束进程。
  */
 export function getConfig(): DefineConfigType {
   // 遍历预定义的配置文件列表
@@ -25,8 +26,9 @@ export function getConfig(): DefineConfigType {
     return require(filePath); // 返回找到的配置文件内容
   }
 
-  // 如果遍历完所有配置文件都未找到存在的配置文件，则抛出错误
-  throw new Error("Cannot find the configuration file for `antd4-theme-vars`.");
+  // 如果遍历完所有配置文件都未找到存在的配置文件，则结束进程
+  logger.error("Cannot find the configuration file for `antd4-theme-vars`.");
+  process.exit(1);
 }
 
 export function uniqueThemeConfigs(themes: ThemeConfig[]) {
@@ -37,11 +39,13 @@ export function uniqueThemeConfigs(themes: ThemeConfig[]) {
   themes.forEach((config) => {
     const { prefixCls } = config;
     if (!prefixCls) {
-      console.log(chalk.yellowBright(prefixCls + "is an invalid prefixCls."));
+      logger.warn(`The prefixCls \`${prefixCls}\` is invalid. Skipped.`);
       return;
     }
     if (prefixCls === DEFAULT_ANT_PREFIX) {
-      console.log(chalk.yellowBright("Skip the `ant` prefixCls."));
+      logger.warn(
+        `Default \`${DEFAULT_ANT_PREFIX}\` prefixCls is not allowed. Skipped.`
+      );
       return;
     }
     themesMap.set(prefixCls, config);
@@ -76,9 +80,22 @@ export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
     process.cwd(),
     "node_modules/antd/dist/antd.less"
   );
-  spawn.sync("lessc", ["--js", ...modifyVars, defaultLessPath, targetPath], {
-    stdio: "inherit",
-  });
+
+  const child = spawn.sync(
+    "lessc",
+    ["--js", ...modifyVars, defaultLessPath, targetPath],
+    {
+      stdio: "inherit",
+    }
+  );
+  if (child.error) {
+    logger.error(child.stderr.toString());
+    process.exit(1);
+  } else {
+    logger.success(
+      `Generate ${chalk.blueBright.underline(targetPath)} success!`
+    );
+  }
 }
 
 export default async function generate() {
@@ -87,7 +104,6 @@ export default async function generate() {
 
   const outputDir = _outputDir || DEFAULT_OUTPUT_DIR;
 
-  // TODO: message
   if (!Array.isArray(_themes)) return;
 
   const themes = uniqueThemeConfigs(_themes);
