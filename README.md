@@ -44,7 +44,7 @@ module.exports = defineConfig({
 In your entry component(such as `App.tsx`). Add:
 
 ``` diff
-+ import { ConfigProvider } from "antd";
++ import "antd4-theme-vars/themes/custom.css";
 ```
 
 Use `ConfigProvider` in your component that needs to set `custom` theme:
