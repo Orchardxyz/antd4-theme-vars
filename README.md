@@ -21,6 +21,8 @@ $ pnpm add antd4-theme-vars --save-dev
 
 ## Usage
 
+### Configuration File
+
 Use `.antd4tvrc.cjs` file to configure the theme variables.  
 
 An example:
@@ -40,6 +42,20 @@ module.exports = defineConfig({
   ],
 });
 ```
+
+### script
+
+Before starting or building, add the `antd4tv gen` command to the scripts section in package.json.
+
+Like:
+
+```json
+"scripts": {
+  "dev": "antd4tv gen && vite"
+}
+```
+
+### ConfigProvider
 
 In your entry component(such as `App.tsx`). Add:
 
