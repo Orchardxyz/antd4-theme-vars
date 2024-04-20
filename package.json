@@ -1,7 +1,7 @@
 {
   "name": "antd4-theme-vars",
   "version": "0.0.1",
-  "description": "Generate different theme files for antd4",
+  "description": "Generate different theme files for antd@4.x",
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
   "bin": {
@@ -15,10 +15,18 @@
     "prepublishOnly": "father doctor && npm run build",
     "zipDist": "node zipDist.js"
   },
-  "keywords": [],
+  "keywords": [
+    "antd4",
+    "antd@4.x",
+    "antd4 theme"
+  ],
   "authors": [
     "Orchard <orchardyz@outlook.com>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Orchardxyz/antd4-theme-vars.git"
+  },
   "license": "MIT",
   "files": [
     "dist",

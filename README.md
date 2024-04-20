@@ -7,7 +7,7 @@
 
 `antd-theme-vars` helps you generate static theme css files based on the `prefixCls` config of `ConfigProvider`.  
 
-With this, you can easily customize the themes of various antd components on the page.
+With this, you can easily customize the themes of various antd components.
 
 ## Install
 
@@ -43,7 +43,7 @@ module.exports = defineConfig({
 });
 ```
 
-### script
+### Script
 
 Before starting or building, add the `antd4tv gen` command to the scripts section in package.json.
 
