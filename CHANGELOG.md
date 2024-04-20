@@ -4,4 +4,10 @@
 
 ### Added
 
-* (First release)Generate theme css files for antd@4.x.
+* Initial release.
+
+## [0.0.1]
+
+### Added
+
+* first commit
