@@ -32,7 +32,7 @@ jobs:
         run: pnpm run build
       - name: Read Changelog
         id: changelog
-        uses: artlaman/conventional-changelog-reader-action@v1.1.0
+        uses: mindsers/changelog-reader-action@v2
         with:
           version: ${{ env.PACKAGE_VERSION }}
           path: ./CHANGELOG.md
