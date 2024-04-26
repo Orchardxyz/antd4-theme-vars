@@ -10,10 +10,9 @@
   "scripts": {
     "commit": "git-cz",
     "dev": "father dev",
-    "build": "father build && npm run zipDist",
+    "build": "father build",
     "build:deps": "father prebundle",
     "prepublishOnly": "father doctor && npm run build",
-    "zipDist": "node zipDist.js",
     "release": "release-it"
   },
   "keywords": [
@@ -42,7 +41,6 @@
     "@types/cross-spawn": "^6.0.6",
     "@types/fs-extra": "^11.0.4",
     "@types/tinycolor2": "^1.4.6",
-    "archiver": "^7.0.1",
     "father": "^4.4.0",
     "git-cz": "^4.9.0",
     "release-it": "^17.2.0"
