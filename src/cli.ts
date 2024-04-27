@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { existsSync, readFileSync, watch } from "fs-extra";
+import { existsSync, readFileSync } from "fs-extra";
 import { join } from "path";
 import chalk from "chalk";
 import generate from "./generate";
@@ -39,15 +39,15 @@ export async function run() {
       process.exit(1);
     }
 
-    // 监听配置文件变化
-    watch(configFilePath!, (eventType, fileName) => {
-      if (eventType === "change") {
-        logger.info(
-          `${chalk.blueBright(fileName)} changed. Regenerating theme files...`
-        );
-        genCommandAction(true);
-      }
-    });
+    // // 监听配置文件变化
+    // watch(configFilePath!, (eventType, fileName) => {
+    //   if (eventType === "change") {
+    //     logger.info(
+    //       `${chalk.blueBright(fileName)} changed. Regenerating theme files...`
+    //     );
+    //     genCommandAction(true);
+    //   }
+    // });
 
     generate(config);
   }
