@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased]
+
+### Changed
+
+* Remove config watcher.
+
 ## [1.0.0] - 2024-04-20
 
 ### Added

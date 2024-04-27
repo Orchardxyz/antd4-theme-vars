@@ -45,13 +45,14 @@ module.exports = defineConfig({
 
 ### Script
 
-Before starting or building, add the `antd4tv gen` command to the scripts section in package.json.
+Add the `antd4tv gen` command to the scripts section in package.json.
 
-Like:
+You can use it like:
 
 ```json
 "scripts": {
-  "dev": "antd4tv gen && vite"
+  "antd4tv": "antd4tv gen",
+  "dev": "npm run antd4tv && vite"
 }
 ```
 
