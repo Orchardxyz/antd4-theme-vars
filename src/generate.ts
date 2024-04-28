@@ -4,6 +4,7 @@ import { DefineConfigType, ThemeConfig } from "./types";
 import spawn from "cross-spawn";
 import logger from "./logger";
 import chalk from "chalk";
+import { emptyDirSync } from "fs-extra";
 
 export function uniqueThemeConfigs(themes: ThemeConfig[]) {
   // 使用Map来过滤掉重复的配置，以prefixCls为键
@@ -80,6 +81,8 @@ export default async function generate(config: DefineConfigType) {
   if (!Array.isArray(_themes)) return;
 
   const themes = uniqueThemeConfigs(_themes);
+  const targetDir = join(process.cwd(), outputDir);
+  emptyDirSync(targetDir);
 
   for (const config of themes) {
     await outputThemeFile(config, outputDir);
