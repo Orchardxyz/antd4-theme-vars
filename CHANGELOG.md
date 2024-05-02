@@ -6,6 +6,10 @@
 
 * Clear the output directory before each generation.
 
+### Fixed
+
+* Generated theme files contaminate global styles.
+
 ## [1.1.0] - 2024-04-27
 
 ### Changed

@@ -38,9 +38,8 @@
   },
   "devDependencies": {
     "@release-it/keep-a-changelog": "^5.0.0",
-    "@types/cross-spawn": "^6.0.6",
     "@types/fs-extra": "^11.0.4",
-    "@types/tinycolor2": "^1.4.6",
+    "@types/less": "^3.0.6",
     "father": "^4.4.0",
     "git-cz": "^4.9.0",
     "release-it": "^17.2.0"
@@ -48,9 +47,9 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^12.0.0",
-    "cross-spawn": "^7.0.3",
     "fs-extra": "^11.2.0",
     "less": "^4.2.0",
+    "postcss": "^8.4.38",
     "v8-compile-cache": "^2.4.0"
   },
   "peerDependencies": {
