@@ -1,23 +1,27 @@
 import {
+  DownOutlined,
+  FrownFilled,
+  FrownOutlined,
+  MehOutlined,
+  SmileOutlined,
+} from "@ant-design/icons";
+import {
   Button,
   Cascader,
   Checkbox,
   DatePicker,
-  Dropdown,
   Input,
-  Menu,
   PageHeader,
   Pagination,
   Popover,
   Radio,
-  Rate,
   Slider,
   Space,
   Steps,
   Switch,
   Timeline,
+  Tree,
 } from "antd";
-import { DownOutlined, SmileOutlined } from "@ant-design/icons";
 
 const description = "This is a description.";
 
@@ -26,65 +30,6 @@ function AntdCompGroup() {
     <Space wrap>
       <Button>Default Button</Button>
       <Button type="primary">Primary Button</Button>
-      <Dropdown
-        overlay={
-          <Menu
-            items={[
-              {
-                key: "1",
-                label: (
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.antgroup.com"
-                  >
-                    1st menu item
-                  </a>
-                ),
-              },
-              {
-                key: "2",
-                label: (
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.aliyun.com"
-                  >
-                    2nd menu item (disabled)
-                  </a>
-                ),
-                icon: <SmileOutlined />,
-                disabled: true,
-              },
-              {
-                key: "3",
-                label: (
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.luohanacademy.com"
-                  >
-                    3rd menu item (disabled)
-                  </a>
-                ),
-                disabled: true,
-              },
-              {
-                key: "4",
-                danger: true,
-                label: "a danger item",
-              },
-            ]}
-          />
-        }
-      >
-        <a onClick={(e) => e.preventDefault()}>
-          <Space>
-            Menu
-            <DownOutlined />
-          </Space>
-        </a>
-      </Dropdown>
       <Steps
         current={1}
         items={[
@@ -158,7 +103,6 @@ function AntdCompGroup() {
       </Radio>
       <DatePicker.RangePicker showTime />
       <Input addonBefore="http://" addonAfter=".com" defaultValue="mysite" />
-      <Rate allowHalf defaultValue={3.5} />
       <Slider style={{ width: 300 }} range defaultValue={[20, 50]} />
       <Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked />
       <Popover
@@ -178,6 +122,32 @@ function AntdCompGroup() {
         <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
         <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
       </Timeline>
+      <Tree
+        showIcon
+        defaultExpandAll
+        defaultSelectedKeys={["0-0-0"]}
+        switcherIcon={<DownOutlined />}
+        treeData={[
+          {
+            title: "parent 1",
+            key: "0-0",
+            icon: <SmileOutlined />,
+            children: [
+              {
+                title: "leaf",
+                key: "0-0-0",
+                icon: <MehOutlined />,
+              },
+              {
+                title: "leaf",
+                key: "0-0-1",
+                icon: ({ selected }) =>
+                  selected ? <FrownFilled /> : <FrownOutlined />,
+              },
+            ],
+          },
+        ]}
+      />
     </Space>
   );
 }
