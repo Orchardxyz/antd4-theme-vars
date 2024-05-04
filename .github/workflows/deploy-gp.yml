@@ -32,3 +32,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./examples/antd4-vite/dist
           publish_branch: gh-pages
+          force_orphan: true
