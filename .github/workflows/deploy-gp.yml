@@ -1,0 +1,32 @@
+name: Deploy Demo to GitHub Pages
+
+on:
+  # trigger manually
+  workflow_dispatch:
+  # trigger when a new tag is pushed
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Install Dependencies
+        run: |
+          npm install pnpm -g
+          pnpm install --no-frozen-lockfile
+      - name: Build Example
+        run: pnpm run build-example
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./examples/antd4-vite/dist
+          publish_branch: gh-pages

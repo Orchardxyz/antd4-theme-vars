@@ -12,6 +12,7 @@
     "dev": "father dev",
     "build": "father build",
     "build:deps": "father prebundle",
+    "build-example": "cd examples/antd4-vite && npm run build && cd ../../",
     "prepublishOnly": "father doctor && npm run build",
     "release": "release-it"
   },
