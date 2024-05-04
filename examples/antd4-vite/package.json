@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "<https://orchardxyz.github.io/antd4-theme-vars>",
   "scripts": {
     "antd4tv": "antd4tv gen",
     "dev": "npm run antd4tv && vite",
