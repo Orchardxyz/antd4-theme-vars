@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+* Add the `antdLessPath` and `antdLessLookingPaths` config.
+
 ### Changed
 
 * Change the `outputDir` config.

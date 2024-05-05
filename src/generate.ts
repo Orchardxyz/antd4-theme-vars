@@ -1,4 +1,9 @@
-import { DEFAULT_ANT_PREFIX, DEFAULT_OUTPUT_DIR } from "./constants";
+import {
+  DEFAULT_ANTD_LESS_LOOKING_PATH,
+  DEFAULT_ANTD_LESS_PATH,
+  DEFAULT_ANT_PREFIX,
+  DEFAULT_OUTPUT_DIR,
+} from "./constants";
 import { join } from "path";
 import { DefineConfigType, ThemeConfig } from "./types";
 import logger from "./logger";
@@ -61,7 +66,13 @@ export function filterAntdGlobalStylePlugin(options: { prefixCls: string }) {
 }
 
 export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
-  const { prefixCls, fileName, variables } = config;
+  const {
+    prefixCls,
+    fileName,
+    variables,
+    antdLessPath: _antdLessPath,
+    antdLessLookingPaths: _antdLessLookingPaths,
+  } = config;
 
   try {
     const _replacedVars = Object.entries(variables ?? {}).reduce<
@@ -80,23 +91,24 @@ export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
     };
 
     const targetPath = join(targetDir, `${fileName}.css`);
-    const defaultLessPath = join(
-      process.cwd(),
-      "node_modules/antd/dist/antd.less"
-    );
-    const antdDirPath = join(process.cwd(), "node_modules/antd/lib");
-
-    const defaultLessContent = readFileSync(defaultLessPath, "utf-8");
-    const allCssRes = await less.render(defaultLessContent, {
+    const antdLessPath =
+      _antdLessPath || join(process.cwd(), DEFAULT_ANTD_LESS_PATH);
+    const antdDirPaths = _antdLessLookingPaths || [
+      join(process.cwd(), DEFAULT_ANTD_LESS_LOOKING_PATH),
+    ];
+    const antdLessContent = readFileSync(antdLessPath, "utf-8");
+    const allCssRes = await less.render(antdLessContent, {
       modifyVars: replacedVars,
-      paths: [antdDirPath],
+      paths: antdDirPaths,
       javascriptEnabled: true,
     });
+
     const result = await postcss([
       filterAntdGlobalStylePlugin({ prefixCls }),
     ]).process(allCssRes.css, {
       from: undefined,
     });
+
     outputFileSync(targetPath, result.css);
     logger.success(
       `Generate ${chalk.blueBright.underline(targetPath)} success!`
@@ -116,7 +128,7 @@ export default async function generate(config: DefineConfigType) {
   const themes = uniqueThemeConfigs(_themes);
   emptyDirSync(outputDir);
 
-  for (const config of themes) {
-    await outputThemeFile(config, outputDir);
+  for (const themeConfig of themes) {
+    await outputThemeFile(themeConfig, outputDir);
   }
 }
