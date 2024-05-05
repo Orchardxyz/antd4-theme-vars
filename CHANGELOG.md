@@ -10,6 +10,7 @@
 ### Changed
 
 * Change the `outputDir` config.
+* Add an [online demo](https://orchardxyz.github.io/antd4-theme-vars).
 
 ## [1.2.0] - 2024-05-03
 
