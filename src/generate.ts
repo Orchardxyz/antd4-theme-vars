@@ -65,14 +65,17 @@ export function filterAntdGlobalStylePlugin(options: { prefixCls: string }) {
   };
 }
 
-export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
+export async function outputThemeFile(
+  themeConfig: ThemeConfig,
+  globalConfig: DefineConfigType
+) {
+  const { prefixCls, fileName, variables } = themeConfig;
+
   const {
-    prefixCls,
-    fileName,
-    variables,
+    outputDir: _outputDir,
     antdLessPath: _antdLessPath,
     antdLessLookingPaths: _antdLessLookingPaths,
-  } = config;
+  } = globalConfig;
 
   try {
     const _replacedVars = Object.entries(variables ?? {}).reduce<
@@ -90,12 +93,14 @@ export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
       "@ant-prefix": prefixCls,
     };
 
-    const targetPath = join(targetDir, `${fileName}.css`);
+    const outputDir = _outputDir || join(process.cwd(), DEFAULT_OUTPUT_DIR);
     const antdLessPath =
       _antdLessPath || join(process.cwd(), DEFAULT_ANTD_LESS_PATH);
     const antdDirPaths = _antdLessLookingPaths || [
       join(process.cwd(), DEFAULT_ANTD_LESS_LOOKING_PATH),
     ];
+
+    const targetPath = join(outputDir, `${fileName}.css`);
     const antdLessContent = readFileSync(antdLessPath, "utf-8");
     const allCssRes = await less.render(antdLessContent, {
       modifyVars: replacedVars,
@@ -129,6 +134,6 @@ export default async function generate(config: DefineConfigType) {
   emptyDirSync(outputDir);
 
   for (const themeConfig of themes) {
-    await outputThemeFile(themeConfig, outputDir);
+    await outputThemeFile(themeConfig, config);
   }
 }

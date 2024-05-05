@@ -78,20 +78,20 @@ export default () => {
 
 ## Configuration
 
-| Name      | Type                           | Default                                                     | Description                              |
-| --------- | ------------------------------ | ----------------------------------------------------------- | ---------------------------------------- |
-| outputDir | string                         | `join(process.cwd(), node_modules/antd4-theme-vars/themes)` | Output directory for generated css files |
-| themes    | [ThemeConfig](#themeconfig) [] | -                                                           | Theme configs                            |
+| Name                 | Type                           | Default                                                     | Description                              |
+| -------------------- | ------------------------------ | ----------------------------------------------------------- | ---------------------------------------- |
+| themes               | [ThemeConfig](#themeconfig) [] | -                                                           | Theme configs                            |
+| outputDir            | string                         | `join(process.cwd(), node_modules/antd4-theme-vars/themes)` | Output directory for generated css files |
+| antdLessPath         | string                         | `join(process.cwd(), "node_modules/antd/dist/antd.less")`   | antd less file path                      |
+| antdLessLookingPaths | string[]                       | `[join(process.cwd(), "node_modules/antd/lib")]`            | antd less looking paths                  |
 
 ### ThemeConfig
 
-| Name                 | Type     | Default                                                   | Description                                                                                                                            |
-| -------------------- | -------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| prefixCls            | string   | -                                                         | not allowed to be `ant`                                                                                                                |
-| fileName             | string   | -                                                         | output file name                                                                                                                       |
-| variables            | object   | -                                                         | antd less variables, see [default.less](https://github.com/ant-design/ant-design/blob/4.x-stable/components/style/themes/default.less) |
-| antdLessPath         | string   | `join(process.cwd(), "node_modules/antd/dist/antd.less")` | antd less file path                                                                                                                    |
-| antdLessLookingPaths | string[] | `[join(process.cwd(), "node_modules/antd/lib")]`          | antd less looking paths                                                                                                                |
+| Name      | Type   | Default | Description                                                                                                                            |
+| --------- | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| prefixCls | string | -       | not allowed to be `ant`                                                                                                                |
+| fileName  | string | -       | output file name                                                                                                                       |
+| variables | object | -       | antd less variables, see [default.less](https://github.com/ant-design/ant-design/blob/4.x-stable/components/style/themes/default.less) |
 
 ## LICENSE
 
