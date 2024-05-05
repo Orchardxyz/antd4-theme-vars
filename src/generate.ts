@@ -79,7 +79,7 @@ export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
       "@ant-prefix": prefixCls,
     };
 
-    const targetPath = join(process.cwd(), `${targetDir}/${fileName}.css`);
+    const targetPath = join(targetDir, `${fileName}.css`);
     const defaultLessPath = join(
       process.cwd(),
       "node_modules/antd/dist/antd.less"
@@ -108,13 +108,11 @@ export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
 export default async function generate(config: DefineConfigType) {
   const { outputDir: _outputDir, themes: _themes } = config;
 
-  const outputDir = _outputDir || DEFAULT_OUTPUT_DIR;
-
   if (!Array.isArray(_themes)) return;
 
+  const outputDir = _outputDir || join(process.cwd(), DEFAULT_OUTPUT_DIR);
   const themes = uniqueThemeConfigs(_themes);
-  const targetDir = join(process.cwd(), outputDir);
-  emptyDirSync(targetDir);
+  emptyDirSync(outputDir);
 
   for (const config of themes) {
     await outputThemeFile(config, outputDir);

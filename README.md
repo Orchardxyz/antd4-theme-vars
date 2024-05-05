@@ -78,10 +78,10 @@ export default () => {
 
 ## Configuration
 
-| Name      | Type                           | Default                                | Description                              |
-| --------- | ------------------------------ | -------------------------------------- | ---------------------------------------- |
-| outputDir | string                         | `node_modules/antd4-theme-vars/themes` | Output directory for generated css files |
-| themes    | [ThemeConfig](#themeconfig) [] | -                                      | Theme configs                            |
+| Name      | Type                           | Default                                                     | Description                              |
+| --------- | ------------------------------ | ----------------------------------------------------------- | ---------------------------------------- |
+| outputDir | string                         | `join(process.cwd(), node_modules/antd4-theme-vars/themes)` | Output directory for generated css files |
+| themes    | [ThemeConfig](#themeconfig) [] | -                                                           | Theme configs                            |
 
 ### ThemeConfig
 

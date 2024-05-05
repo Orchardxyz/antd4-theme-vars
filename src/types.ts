@@ -13,7 +13,7 @@ export type ThemeConfig = {
 };
 
 export type DefineConfigType = {
-  /** output directory, default is `node_modules/antd4-theme-vars/themes` */
+  /** output directory, default is `join(process.cwd(), node_modules/antd4-theme-vars/themes)` */
   outputDir?: string;
 
   /** different theme configs */

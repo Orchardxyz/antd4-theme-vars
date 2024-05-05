@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased]
+
+### Changed
+
+* Change the `outputDir` config.
+
 ## [1.2.0] - 2024-05-03
 
 ### Added
