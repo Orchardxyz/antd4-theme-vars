@@ -94,7 +94,9 @@ export async function outputThemeFile(config: ThemeConfig, targetDir: string) {
     });
     const result = await postcss([
       filterAntdGlobalStylePlugin({ prefixCls }),
-    ]).process(allCssRes.css);
+    ]).process(allCssRes.css, {
+      from: undefined,
+    });
     outputFileSync(targetPath, result.css);
     logger.success(
       `Generate ${chalk.blueBright.underline(targetPath)} success!`
