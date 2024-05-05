@@ -1,6 +1,6 @@
 {
   "name": "antd4-theme-vars",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Generate different theme files for antd@4.x",
   "homepage": "https://orchardxyz.github.io/antd4-theme-vars",
   "main": "dist/cjs/index.js",
