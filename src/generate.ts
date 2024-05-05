@@ -6,6 +6,7 @@ import {
 } from "./constants";
 import { join } from "path";
 import { DefineConfigType, ThemeConfig } from "./types";
+import CleanCss from "clean-css";
 import logger from "./logger";
 import chalk from "chalk";
 import less from "less";
@@ -73,6 +74,7 @@ export async function outputThemeFile(
 
   const {
     outputDir: _outputDir,
+    minifyCSS = true,
     antdLessPath: _antdLessPath,
     antdLessLookingPaths: _antdLessLookingPaths,
   } = globalConfig;
@@ -100,7 +102,7 @@ export async function outputThemeFile(
       join(process.cwd(), DEFAULT_ANTD_LESS_LOOKING_PATH),
     ];
 
-    const targetPath = join(outputDir, `${fileName}.css`);
+    const targetCSSPath = join(outputDir, `${fileName}.css`);
     const antdLessContent = readFileSync(antdLessPath, "utf-8");
     const allCssRes = await less.render(antdLessContent, {
       modifyVars: replacedVars,
@@ -114,10 +116,20 @@ export async function outputThemeFile(
       from: undefined,
     });
 
-    outputFileSync(targetPath, result.css);
+    const cssContent = result.css;
+    outputFileSync(targetCSSPath, cssContent);
     logger.success(
-      `Generate ${chalk.blueBright.underline(targetPath)} success!`
+      `${chalk.blueBright.underline(targetCSSPath)} was generated!`
     );
+
+    if (minifyCSS) {
+      const targetMinCSSPath = join(outputDir, `${fileName}.min.css`);
+      const minifiedCssContent = new CleanCss().minify(cssContent).styles;
+      outputFileSync(targetMinCSSPath, minifiedCssContent);
+      logger.info(
+        `${chalk.blueBright.underline(targetMinCSSPath)} was generated.`
+      );
+    }
   } catch (error) {
     logger.error(error as string);
     process.exit(1);

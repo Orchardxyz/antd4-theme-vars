@@ -82,6 +82,7 @@ export default () => {
 | -------------------- | ------------------------------ | ----------------------------------------------------------- | ---------------------------------------- |
 | themes               | [ThemeConfig](#themeconfig) [] | -                                                           | Theme configs                            |
 | outputDir            | string                         | `join(process.cwd(), node_modules/antd4-theme-vars/themes)` | Output directory for generated css files |
+| minifyCSS            | boolean                        | `true`                                                      | Whether to minify css files              |
 | antdLessPath         | string                         | `join(process.cwd(), "node_modules/antd/dist/antd.less")`   | antd less file path                      |
 | antdLessLookingPaths | string[]                       | `[join(process.cwd(), "node_modules/antd/lib")]`            | antd less looking paths                  |
 

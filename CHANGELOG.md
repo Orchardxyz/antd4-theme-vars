@@ -5,6 +5,7 @@
 ### Added
 
 * Add the `antdLessPath` and `antdLessLookingPaths` config.
+* Add the `minifyCSS` config.
 
 ### Changed
 

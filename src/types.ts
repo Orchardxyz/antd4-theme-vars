@@ -19,6 +19,9 @@ export type DefineConfigType = {
   /** output directory, default is `join(process.cwd(), "node_modules/antd4-theme-vars/themes")` */
   outputDir?: string;
 
+  /** minify css, will generate another `*.min.css` file, default is `true` */
+  minifyCSS?: boolean;
+
   /** antd less path, default is `join(process.cwd(), "node_modules/antd/dist/antd.less")`   */
   antdLessPath?: string;
 

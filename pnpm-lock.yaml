@@ -14,6 +14,9 @@ importers:
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
+      clean-css:
+        specifier: ^5.3.3
+        version: 5.3.3
       commander:
         specifier: ^12.0.0
         version: 12.0.0
@@ -33,6 +36,9 @@ importers:
       '@release-it/keep-a-changelog':
         specifier: ^5.0.0
         version: 5.0.0(release-it@17.2.0)
+      '@types/clean-css':
+        specifier: ^4.2.11
+        version: 4.2.11
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -1655,6 +1661,13 @@ packages:
       '@babel/types': 7.24.0
     dev: true
 
+  /@types/clean-css@4.2.11:
+    resolution: {integrity: sha512-Y8n81lQVTAfP2TOdtJJEsCoYl1AnOkqDqMvXb9/7pfgZZ7r8YrEyurrAvAoAjHOGXKRybay+5CsExqIH6liccw==}
+    dependencies:
+      '@types/node': 20.12.7
+      source-map: 0.6.1
+    dev: true
+
   /@types/eslint-scope@3.7.7:
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
     dependencies:
@@ -2801,6 +2814,13 @@ packages:
 
   /classnames@2.5.1:
     resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+    dev: false
+
+  /clean-css@5.3.3:
+    resolution: {integrity: sha512-D5J+kHaVb/wKSFcyyV75uCn8fiY4sV38XJoe4CUyGQ+mOU/fMVYUdH1hJC+CJQ5uY3EnW27SbJYS4X8BiLrAFg==}
+    engines: {node: '>= 10.0'}
+    dependencies:
+      source-map: 0.6.1
     dev: false
 
   /cli-boxes@3.0.0:
