@@ -139,7 +139,7 @@ export async function outputThemeFile(
 export default async function generate(config: DefineConfigType) {
   const { outputDir: _outputDir, themes: _themes } = config;
 
-  if (!Array.isArray(_themes)) return;
+  if (!Array.isArray(_themes)) {return;}
 
   const outputDir = _outputDir || join(process.cwd(), DEFAULT_OUTPUT_DIR);
   const themes = uniqueThemeConfigs(_themes);

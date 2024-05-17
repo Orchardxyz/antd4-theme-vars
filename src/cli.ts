@@ -27,7 +27,7 @@ export async function run() {
     let config: DefineConfigType | undefined;
     for (const configFile of CONFIG_FILES) {
       configFilePath = join(process.cwd(), configFile); // 拼接当前工作目录和配置文件名
-      if (!existsSync(configFilePath)) continue; // 如果文件不存在，则继续遍历下一个配置文件
+      if (!existsSync(configFilePath)) {continue;} // 如果文件不存在，则继续遍历下一个配置文件
       config = require(configFilePath); // 返回找到的配置文件内容
     }
 
